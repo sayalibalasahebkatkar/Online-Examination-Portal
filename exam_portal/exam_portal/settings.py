@@ -38,10 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'admin_management',
-    'college_management'
     'exam_management',
-    'student_management'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +123,19 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_USER_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = "sayalibk2002@gmail.com"
+# EMAIL_HOST_PASSWORD = "Sayali@2004"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sayalibk2002@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Sayali@2004'
+EMAIL_HOST_PASSWORD="yhhdxeqrcpsreffy"
