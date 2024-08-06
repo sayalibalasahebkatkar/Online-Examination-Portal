@@ -1,30 +1,6 @@
 from rest_framework import serializers
-from exam_management.models import Test,Question,Option,FillInTheBlankAnswer,StudentTest,StudentAnswer, Student
+from exam_management.models import StudentTest,Student
 from exam_management.serializers import StudentSerializer
-
-class TestSerializer(serializers.ModelSerializer):
-    # file = serializers.FileField(required=False)
-    class Meta:
-        model = Test
-        fields = '__all__'
-
-
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Question
-        fields = '__all__'
-
-class OptionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Option
-        fields = '__all__'
-
-
-class FillInTheBlankAnswerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FillInTheBlankAnswer
-        fields = '__all__'
-
 
 class StudentTestSerializer(serializers.ModelSerializer):
     
@@ -57,26 +33,3 @@ class StudentTestSerializer(serializers.ModelSerializer):
             
             validated_data['student'] = student
         return super().create(validated_data)
-
-        # def __init__(self,*args, **kwargs):
-    #     validated_data = kwargs['data']
-    #     student_serializer = StudentSerializer(data=validated_data)
-    #     try:
-    #         student= Student.objects.get(email=validated_data['email'])
-    #     except:
-    #         if student_serializer.is_valid():
-    #             student,created = student_serializer.save()
-    #         else :
-    #             raise serializers.ValidationError(student_serializer.errors)
-    #     validated_data['student'] = student.id
-    #     kwargs['data']=validated_data
-    #     return super().__init__(*args,**kwargs)
-        
-
-
-
-
-class StudentAnswerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StudentAnswer
-        fields = '__all__'

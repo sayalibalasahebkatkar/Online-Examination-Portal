@@ -1,14 +1,16 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
 
-class Role(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(blank=True)
-
-# Create your models here.
 class User(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
-    roles = models.ManyToManyField(Role, blank=True)
+    password = models.CharField(max_length=128)
 
+    def save(self, *args, **kwargs):
+        if self._state.adding and self.password:
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.email

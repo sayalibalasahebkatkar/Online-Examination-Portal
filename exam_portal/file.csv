@@ -1,0 +1,6 @@
+name,rollno,email,gender,highestdegree,phone_no
+John Doe,R001,john.doe@example.com,Male,Bachelor's,1234567890
+Jane Smith,R002,jane.smith@example.com,Female,Master's,2345678901
+Alex Johnson,R003,alex.johnson@example.com,Non-binary,Ph.D.,3456789012
+Emily Brown,R004,emily.brown@example.com,Female,Bachelor's,4567890123
+Michael Lee,R005,michael.lee@example.com,Male,Master's,5678901234
