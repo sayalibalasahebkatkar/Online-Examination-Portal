@@ -7,3 +7,4 @@ from .studenttest_seralizers import *
 from .studentanswer_seralizers import *
 from .availabletest_serializer import *
 from .testattempt_serializer import *
+from .addstudenttotest_serializer import *

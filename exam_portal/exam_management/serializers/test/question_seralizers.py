@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+from exam_management.models import Test
 from exam_management.models import Question,Option,FillInTheBlankAnswer,SqlQuery
 from .option_seralizers import OptionValidationSerializer
 from .fillintheblanks_serializers import FillInTheBlankAnswerValidationSerializer
@@ -6,6 +8,7 @@ from .sqlquery_serializers import SqlQueryValidationSerializer
 
 
 class QuestionSerializer(serializers.ModelSerializer):
+    test = serializers.PrimaryKeyRelatedField(queryset=Test.objects.all())
     options = OptionValidationSerializer(many=True,required=False)
     fill_in_blank_answer =FillInTheBlankAnswerValidationSerializer(required=False)
     sql_query = SqlQueryValidationSerializer(required=False)
@@ -16,6 +19,13 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         question_type = data['question_type']
+
+        test = data['test']
+        print(test)
+
+        # Check if the test allows SQL questions
+        if not test.has_sql and question_type == 'SQL':
+            raise serializers.ValidationError("This test does not allow SQL questions.")
 
         if question_type=='MCQ':
             options_data = data.get('options',None)
@@ -52,3 +62,5 @@ class QuestionSerializer(serializers.ModelSerializer):
             SqlQuery.objects.create(question=question, **sql_query_data)
 
         return question
+    
+    

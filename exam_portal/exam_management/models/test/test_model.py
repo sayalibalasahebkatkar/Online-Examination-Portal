@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class Test(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True,unique=True)
     name = models.CharField(max_length=100)
     description = models.TextField()
     start_time = models.DateTimeField()

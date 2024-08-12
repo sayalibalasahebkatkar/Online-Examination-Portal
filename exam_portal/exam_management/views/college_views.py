@@ -1,6 +1,9 @@
 from rest_framework import viewsets
-from exam_management.models import College,Stream,Branch
-from exam_management.serializers import CollegeSerializer,StreamSerializer,BranchSerializer
+from rest_framework.response import Response
+
+from exam_management.models import College,Stream,Branch,CollegeStream
+from exam_management.serializers import CollegeSerializer,StreamSerializer,BranchSerializer,CollegeStreamSerializer
+
 
 class StreamViewSet(viewsets.ModelViewSet):
     queryset = Stream.objects.all()
@@ -13,3 +16,8 @@ class BranchViewSet(viewsets.ModelViewSet):
 class CollegeViewSet(viewsets.ModelViewSet):
     queryset = College.objects.all()
     serializer_class = CollegeSerializer
+
+
+class CollegeStreamViewSet(viewsets.ModelViewSet):
+    queryset = CollegeStream.objects.all()
+    serializer_class = CollegeStreamSerializer
