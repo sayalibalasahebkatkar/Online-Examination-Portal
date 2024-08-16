@@ -7,9 +7,6 @@ from exam_management.models import StudentTest,Test
 
 class IsStudentEligibleForTest(BasePermission):
     def has_permission(self, request, view):
-        # Extract the student ID from the JWT token
-        # student_id = request.user.id
-
         student_id=None
         if 'student_id' in request.query_params:
             student_id = request.query_params['student_id']

@@ -12,7 +12,7 @@ from exam_management.permission import IsStudentEligibleForTest
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_classes = [IsStudentEligibleForTest]
+    # permission_classes = [IsStudentEligibleForTest]
 
     @action(detail=False, methods=['get'], url_path='test-questions')
     def get_test_question(self, request, test_id=None):
