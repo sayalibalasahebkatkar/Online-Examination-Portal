@@ -1,5 +1,28 @@
-myenv/
-**/__pycache__/
+# Virtual environment
+/myenv/
+
+# Python bytecode
 *.pyc
+*.pyo
+*.pyd
+
+# Ignore all __pycache__ directories and their contents
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*/*/*/__pycache__/
+
+# Database
 db.sqlite3
-exam_management/migrations/
+
+# Django migrations
+exam_management/migrations/*
+!exam_management/migrations/__init__.py
+
+# IDE-specific files (optional)
+.vscode/
+.idea/
+
+# OS-specific files (optional)
+.DS_Store
+Thumbs.db
