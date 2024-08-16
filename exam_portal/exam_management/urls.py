@@ -20,5 +20,7 @@ router.register(r'available-tests', views.AvailableTestViewSet, basename='availa
 urlpatterns = [
     path('', include(router.urls)),
     path('start-test/', views.StartTestView.as_view(), name='start-test'),
-    path('login/', views.LoginView.as_view(), name='login')
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('test/<int:test_id>/question/',views.TestQuestionViewset.as_view({'post':'add_question_to_test'})),
+    path('test/<int:test_id>/question-set/',views.TestQuestionViewset.as_view({'get':'get_test_question'}))
 ]

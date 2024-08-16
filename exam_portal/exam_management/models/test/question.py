@@ -13,3 +13,6 @@ class Question(models.Model):
     question_text = models.CharField(max_length=128)
     question_type = models.CharField(max_length=3, choices=QUESTION_TYPES)
     tags = models.ManyToManyField(Tag, related_name='questions', blank=True)
+
+    class Meta:
+        unique_together = ('question_text', 'question_type')
