@@ -1,5 +1,7 @@
 from django.db import models
-from .test_model import Test
+
+from .test import Test
+from .question_tag import Tag
 
 class Question(models.Model):
     QUESTION_TYPES = [
@@ -10,3 +12,4 @@ class Question(models.Model):
     id = models.AutoField(primary_key=True)
     question_text = models.CharField(max_length=128)
     question_type = models.CharField(max_length=3, choices=QUESTION_TYPES)
+    tags = models.ManyToManyField(Tag, related_name='questions', blank=True)

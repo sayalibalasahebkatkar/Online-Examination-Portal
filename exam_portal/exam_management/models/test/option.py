@@ -1,5 +1,5 @@
 from django.db import models
-from .question_model import Question
+from .question import Question
 
 class Option(models.Model):
     id = models.AutoField(primary_key=True)

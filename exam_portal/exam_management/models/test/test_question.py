@@ -1,7 +1,7 @@
 from django.db import models
 
-from .test_model import Test
-from .question_model import Question
+from .test import Test
+from .question import Question
 
 class TestQuestion(models.Model):
     id = models.AutoField(primary_key=True)

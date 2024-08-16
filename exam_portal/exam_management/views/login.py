@@ -2,8 +2,9 @@ from django.contrib.auth.hashers import check_password
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from exam_management.utils import generate_access_token,decode_access_token
+from exam_management.utils.token import generate_access_token,decode_access_token
 from exam_management.models import User,Student
+
 
 class LoginView(APIView):
     def post(self, request):

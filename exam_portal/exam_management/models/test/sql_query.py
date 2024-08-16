@@ -1,7 +1,7 @@
 from django.db import models
-from .question_model import Question
+from .question import Question
 
-class FillInTheBlankAnswer(models.Model):
+class SqlQuery(models.Model):
     id = models.AutoField(primary_key=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    correct_answer = models.TextField()
+    expected_answer = models.TextField()

@@ -1,6 +1,6 @@
 from django.db import models
 from exam_management.models.student import Student
-from .test_model import Test
+from .test import Test
 
 class StudentTest(models.Model):
     id = models.AutoField(primary_key=True)

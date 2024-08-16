@@ -1,28 +1,22 @@
-from rest_framework import viewsets
-from exam_management.models import Test
-from exam_management.serializers import TestSerializer,AddStudentToTestSerializer
-from django.core.mail import send_mail
-from exam_portal.settings import EMAIL_HOST_USER
-from rest_framework.response import Response
-from rest_framework import status
 import sqlite3
+import os
+import pandas as pd
+
+from rest_framework import viewsets,status
+from django.core.mail import send_mail
+from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
 from django.core.files.storage import default_storage
-import os
-import pandas as pd
-import secrets
-import string
 
+from exam_management.models import Test
+from exam_management.serializers import TestSerializer,AddStudentToTestSerializer
+from exam_portal.settings import EMAIL_HOST_USER
+from exam_management.utils.generate_password import generate_strong_password
 
 class TestViewSet(viewsets.ModelViewSet):
     queryset = Test.objects.all()
     serializer_class = TestSerializer
-
-    def generate_strong_password(self, length=12):
-        alphabet = string.ascii_letters + string.digits
-        password = ''.join(secrets.choice(alphabet) for i in range(length))
-        return password
 
     def create(self, request, *args, **kwargs):
         if request.data.get('has_sql'):
@@ -89,11 +83,11 @@ class TestViewSet(viewsets.ModelViewSet):
             test_id = request.data.get('test')
             for student in student_data_list:
                 student['test'] = test_id
-                student['password'] = self.generate_strong_password()
+                student['password'] = generate_strong_password()
         else:
             # Single student JSON data
             student_data = request.data.copy()
-            student_data['password'] = self.generate_strong_password()
+            student_data['password'] = generate_strong_password()
             student_data_list = [student_data]
 
         created_students = []
@@ -121,7 +115,7 @@ class TestViewSet(viewsets.ModelViewSet):
         
 
 
-    def send_authentication_email(self,test,name,password,student_email):
+    def invite_student(self,test,name,password,student_email):
         try:
             subject = "Whirlpool Aptitude Test Credentials"
             test_start_datetime = test.start_time

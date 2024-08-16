@@ -1,6 +1,6 @@
 from django.db import models
-from .studenttest_model import StudentTest
-from .question_model import Question
+from .student_test import StudentTest
+from .question import Question
 
 
 class StudentAnswer(models.Model):

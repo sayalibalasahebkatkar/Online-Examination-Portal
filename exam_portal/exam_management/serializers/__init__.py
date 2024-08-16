@@ -1,4 +1,4 @@
-from .user_serializers import *
-from .college_serializers import *
-from .student_serializers import *
+from .user import *
+from .college import *
+from .student import *
 from .test import *
